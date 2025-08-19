@@ -60,10 +60,9 @@ class SimpleMainActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)
                 
                 android.util.Log.d("SMS2Gmail", "Google Sign-In réussi pour: ${account?.email}")
-                android.util.Log.d("SMS2Gmail", "Server auth code: ${account?.serverAuthCode != null}")
                 
-                // Traiter le server auth code pour obtenir les tokens Gmail
-                googleSignInManager.handleSignInResult(account?.serverAuthCode) { success, message ->
+                // Vérifier l'authentification avec la nouvelle approche Android standalone
+                googleSignInManager.handleSignInResult { success, message ->
                     runOnUiThread {
                         if (success) {
                             Toast.makeText(this, "Gmail connecté avec succès!", Toast.LENGTH_SHORT).show()
