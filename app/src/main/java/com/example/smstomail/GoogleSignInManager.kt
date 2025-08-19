@@ -75,6 +75,18 @@ class GoogleSignInManager(private val context: Context) {
             return
         }
         
+        // Mettre à jour la configuration automatiquement
+        val simpleConfig = SimpleConfig(context)
+        val currentConfig = simpleConfig.getEmailConfig()
+        
+        // Sauvegarder l'email de l'utilisateur et marquer comme authentifié
+        simpleConfig.saveEmailConfig(
+            userEmail = account.email ?: "",
+            recipientEmail = currentConfig.recipientEmail.ifBlank { account.email ?: "" }
+        )
+        simpleConfig.setGmailAuthenticated(true)
+        
+        Log.d(TAG, "Configuration email mise à jour automatiquement")
         Log.d(TAG, "Authentification Google réussie avec scope Gmail")
         callback(true, "Authentification Google réussie")
     }
@@ -125,7 +137,11 @@ class GoogleSignInManager(private val context: Context) {
     fun signOut(callback: (Boolean) -> Unit) {
         googleSignInClient.signOut().addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                Log.d(TAG, "Déconnexion Google réussie")
+                // Nettoyer la configuration d'authentification
+                val simpleConfig = SimpleConfig(context)
+                simpleConfig.setGmailAuthenticated(false)
+                
+                Log.d(TAG, "Déconnexion Google réussie, configuration nettoyée")
                 callback(true)
             } else {
                 Log.e(TAG, "Erreur déconnexion Google", task.exception)
