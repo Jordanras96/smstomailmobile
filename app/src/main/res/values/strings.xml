@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">smstomail</string>
+    
+    <!-- Status messages -->
+    <string name="status_template">Statut: %1$s</string>
+    <string name="sms_count_template">SMS traités: %1$d</string>
+    
+    <!-- Button texts -->
+    <string name="gmail_connected_oauth2">✓ Gmail connecté (OAuth2)</string>
+    <string name="connect_to_gmail">Se connecter à Gmail</string>
+    
+    <!-- Status values -->
+    <string name="status_permissions_missing">❌ Permissions manquantes</string>
+    <string name="status_gmail_not_connected">❌ Gmail non connecté</string>
+    <string name="status_email_config_incomplete">❌ Configuration email incomplète</string>
+    <string name="status_app_ready">✅ Application prête</string>
+    
+    <!-- Toast messages -->
+    <string name="gmail_connected_success">Gmail connecté avec succès!</string>
+    <string name="oauth2_error">Erreur OAuth2</string>
+    <string name="auth_cancelled">Authentification annulée</string>
+    <string name="config_saved">Configuration sauvegardée</string>
+    <string name="invalid_recipient_email">Email destinataire invalide</string>
+    <string name="email_config_incomplete">Configuration email incomplète</string>
+    <string name="gmail_not_authenticated">Gmail non authentifié</string>
+    <string name="test_email_sent_success">Email de test envoyé avec succès!</string>
+    <string name="test_email_sent_error">Erreur lors de l\'envoi de l\'email de test</string>
+    <string name="error_template">Erreur: %1$s</string>
+    <string name="all_permissions_granted">Toutes les permissions sont accordées</string>
+    <string name="already_connected_gmail">Déjà connecté à Gmail</string>
+    <string name="cannot_start_auth">Impossible de démarrer l\'authentification</string>
+    <string name="oauth2_error_template">Erreur OAuth2: %1$s</string>
+</resources>
