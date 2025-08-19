@@ -20,9 +20,8 @@ object OAuth2Config {
     // Client ID Android OAuth 2.0 (existant et configuré)
     const val ANDROID_CLIENT_ID = "447857613313-itn45fqo3jqeh51r2o3lumnt5ihdvqrk.apps.googleusercontent.com"
     
-    // Client ID Web pour server-side auth (DOIT ÊTRE CRÉÉ dans Google Cloud Console)
-    // Instructions: Créez un nouveau "Web application" client dans les Credentials
-    const val WEB_CLIENT_ID = "447857613313-CRÉER_CLIENT_WEB.apps.googleusercontent.com"
+    // Client ID Web pour server-side auth (✅ CONFIGURÉ)
+    const val WEB_CLIENT_ID = "447857613313-0vjdrgksgn4391bb6r23jeg7cok4ac1q.apps.googleusercontent.com"
     
     // Endpoints Google OAuth2 (basés sur le projet configuré)
     const val AUTH_URI = "https://accounts.google.com/o/oauth2/auth"
@@ -74,32 +73,27 @@ object OAuth2Config {
      * Vérifie si le client Web est configuré
      */
     fun isWebClientConfigured(): Boolean {
-        return WEB_CLIENT_ID != "447857613313-CRÉER_CLIENT_WEB.apps.googleusercontent.com"
+        return WEB_CLIENT_ID.contains("-0vjdrgksgn4391bb6r23jeg7cok4ac1q.")
     }
     
     /**
-     * Instructions pour créer le client Web manquant
+     * État de la configuration complète
      */
-    const val WEB_CLIENT_SETUP_INSTRUCTIONS = """
-        ⚠️  CLIENT WEB REQUIS - ÉTAPES À SUIVRE:
+    const val CONFIGURATION_STATUS = """
+        ✅ CONFIGURATION OAUTH 2.0 COMPLÈTE:
         
-        1. Allez sur: https://console.cloud.google.com/apis/credentials?project=mythical-sky-448106-v4
-        2. Cliquez "Create Credentials" > "OAuth 2.0 Client ID"  
-        3. Sélectionnez "Web application"
-        4. Nom: "SMS to Mail Web Client"
-        5. Authorized JavaScript origins:
+        ✅ Projet Google Cloud: mythical-sky-448106-v4
+        ✅ API Gmail: Activée  
+        ✅ Client Android: 447857613313-itn45fqo3jqeh51r2o3lumnt5ihdvqrk
+        ✅ Client Web: 447857613313-0vjdrgksgn4391bb6r23jeg7cok4ac1q
+        ✅ Scopes configurés: openid, email, profile, gmail.send
+        ✅ Sites autorisés:
            - https://smstomail.vercel.app
-           - https://jordanras96.github.io
-        6. Authorized redirect URIs:
-           - https://smstomail.vercel.app/
            - https://jordanras96.github.io/smstomail/
-        7. Copiez le Client ID généré 
-        8. Remplacez WEB_CLIENT_ID dans OAuth2Config.kt
         
-        ✅ CONFIGURATION ACTUELLE:
-        - ✅ Projet: mythical-sky-448106-v4 
-        - ✅ Client Android: Configuré
-        - ✅ API Gmail: Activée
-        - ❌ Client Web: À créer
+        📱 L'application est prête pour l'authentification OAuth 2.0 !
+        
+        🔧 RECOMMANDATION: Désactivez le "schéma d'URI personnalisé" 
+        dans Google Cloud Console car Google Identity Services ne l'utilise pas.
     """
 }
