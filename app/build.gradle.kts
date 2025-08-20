@@ -31,10 +31,13 @@ android {
         }
     }
     
-    applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            val outputImpl = output as com.android.build.gradle.internal.api.BaseVariantOutputImpl
-            outputImpl.outputFileName = "SMStoMail-${variant.buildType.name}-v${variant.versionName}.apk"
+    androidComponents {
+        onVariants { variant ->
+            variant.outputs.forEach { output ->
+                if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
+                    output.outputFileName.set("SMStoMail-${variant.buildType}-v${defaultConfig.versionName}.apk")
+                }
+            }
         }
     }
     
