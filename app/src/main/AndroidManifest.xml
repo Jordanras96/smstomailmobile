@@ -32,16 +32,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Smstomail">
 
-        <!-- Activité principale -->
+        <!-- Activité splash -->
         <activity
-            android:name=".SimpleMainActivity"
+            android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.Smstomail">
+            android:theme="@style/Theme.SMStoMail.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Activité principale -->
+        <activity
+            android:name=".SimpleMainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Smstomail" />
+
+        <!-- Activité des filtres avancés -->
+        <activity
+            android:name=".AdvancedFiltersActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Smstomail"
+            android:parentActivityName=".SimpleMainActivity" />
 
         <!-- OAuth2CallbackActivity supprimée - utilise maintenant serveur HTTP local -->
 
@@ -51,6 +64,16 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter android:priority="1000">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- BroadcastReceiver avancé pour SMS avec filtrage automatique -->
+        <receiver
+            android:name=".AdvancedSmsReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="999">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>

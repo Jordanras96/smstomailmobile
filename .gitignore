@@ -37,3 +37,7 @@ google-services.json
 
 # Debug files
 debug_oauth.sh
+
+# Claude Code files
+.claude/
+*.claude

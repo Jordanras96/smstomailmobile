@@ -24,6 +24,7 @@ class SimpleMainActivity : AppCompatActivity() {
     private lateinit var buttonGmailAuth: Button
     private lateinit var buttonSaveConfig: Button
     private lateinit var buttonTestSms: Button
+    private lateinit var buttonAdvancedFilters: Button
     
     private lateinit var simpleConfig: SimpleConfig
     private lateinit var simpleStorage: SimpleStorage
@@ -143,6 +144,7 @@ class SimpleMainActivity : AppCompatActivity() {
         buttonGmailAuth = findViewById(R.id.buttonGmailAuth)
         buttonSaveConfig = findViewById(R.id.buttonSaveConfig)
         buttonTestSms = findViewById(R.id.buttonTestSms)
+        buttonAdvancedFilters = findViewById(R.id.buttonAdvancedFilters)
     }
     
     private fun initServices() {
@@ -174,6 +176,10 @@ class SimpleMainActivity : AppCompatActivity() {
         
         buttonTestSms.setOnClickListener {
             testEmailSending()
+        }
+        
+        buttonAdvancedFilters.setOnClickListener {
+            openAdvancedFilters()
         }
         
         statusTextView.setOnClickListener {
@@ -257,6 +263,11 @@ class SimpleMainActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Email destinataire invalide", Toast.LENGTH_SHORT).show()
         }
+    }
+    
+    private fun openAdvancedFilters() {
+        val intent = Intent(this, AdvancedFiltersActivity::class.java)
+        startActivity(intent)
     }
     
     private fun testEmailSending() {

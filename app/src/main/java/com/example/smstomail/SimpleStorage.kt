@@ -11,14 +11,28 @@ class SimpleStorage(context: Context) {
     
     private val prefs: SharedPreferences = context.getSharedPreferences("sms_storage", Context.MODE_PRIVATE)
     
-    data class SimpleSms(
-        val id: String,
-        val sender: String,
-        val content: String,
-        val timestamp: Long,
-        val hash: String,
-        val sent: Boolean = false
-    )
+    // SimpleSms moved to separate file
+    
+    fun saveSms(sms: SimpleSms) {
+        val json = JSONObject().apply {
+            put("id", sms.id)
+            put("sender", sms.sender)
+            put("content", sms.content)
+            put("timestamp", sms.timestamp)
+            put("hash", sms.hash)
+            put("sent", sms.sent)
+        }
+        
+        // Sauver dans SharedPreferences
+        prefs.edit {
+            putString(sms.id, json.toString())
+        }
+        
+        // Ajouter à la liste des SMS non envoyés si pas encore envoyé
+        if (!sms.sent) {
+            addToPendingList(sms.id)
+        }
+    }
     
     fun saveSms(sender: String, content: String): String? {
         val timestamp = System.currentTimeMillis()

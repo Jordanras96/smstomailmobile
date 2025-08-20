@@ -31,6 +31,13 @@ android {
         }
     }
     
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            val outputImpl = output as com.android.build.gradle.internal.api.BaseVariantOutputImpl
+            outputImpl.outputFileName = "SMStoMail-${variant.buildType.name}-v${variant.versionName}.apk"
+        }
+    }
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

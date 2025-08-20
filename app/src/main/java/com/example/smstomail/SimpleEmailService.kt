@@ -78,7 +78,7 @@ class SimpleEmailService : Service() {
         }
     }
     
-    private fun buildEmailBody(sms: SimpleStorage.SimpleSms): String {
+    private fun buildEmailBody(sms: SimpleSms): String {
         val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
         val dateStr = dateFormat.format(Date(sms.timestamp))
         

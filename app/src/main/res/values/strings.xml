@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">smstomail</string>
+    <string name="app_name">SMStoMail</string>
     
     <!-- Status messages -->
     <string name="status_template">Statut: %1$s</string>
