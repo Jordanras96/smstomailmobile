@@ -46,7 +46,7 @@
         <!-- Activité principale -->
         <activity
             android:name=".SimpleMainActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/Theme.Smstomail" />
 
         <!-- Activité des filtres avancés -->

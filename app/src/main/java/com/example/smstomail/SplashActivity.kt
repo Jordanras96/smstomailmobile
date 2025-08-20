@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 class SplashActivity : AppCompatActivity() {
     
     companion object {
-        private const val SPLASH_DELAY = 2000L // 2 secondes
+        private const val SPLASH_DELAY = 1500L // 1.5 secondes
     }
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,11 +21,18 @@ class SplashActivity : AppCompatActivity() {
         
         // Lancer l'activité principale après le délai
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, SimpleMainActivity::class.java))
-            finish()
-            
-            // Animation de transition
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            try {
+                val intent = Intent(this, SimpleMainActivity::class.java)
+                startActivity(intent)
+                finish()
+                
+                // Animation de transition
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // En cas d'erreur, fermer l'app proprement
+                finish()
+            }
         }, SPLASH_DELAY)
     }
     
