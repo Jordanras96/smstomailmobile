@@ -19,12 +19,12 @@ class SimpleMainActivity : AppCompatActivity() {
     
     private lateinit var statusTextView: TextView
     private lateinit var smsCountTextView: TextView
-    private lateinit var recipientEditText: EditText
-    private lateinit var buttonRequestPermissions: Button
-    private lateinit var buttonGmailAuth: Button
-    private lateinit var buttonSaveConfig: Button
-    private lateinit var buttonTestSms: Button
-    private lateinit var buttonAdvancedFilters: Button
+    private lateinit var recipientEditText: com.google.android.material.textfield.TextInputEditText
+    private lateinit var buttonRequestPermissions: com.google.android.material.button.MaterialButton
+    private lateinit var buttonGmailAuth: com.google.android.material.button.MaterialButton
+    private lateinit var buttonSaveConfig: com.google.android.material.button.MaterialButton
+    private lateinit var buttonTestSms: com.google.android.material.button.MaterialButton
+    private lateinit var buttonAdvancedFilters: com.google.android.material.button.MaterialButton
     
     private lateinit var simpleConfig: SimpleConfig
     private lateinit var simpleStorage: SimpleStorage
@@ -121,16 +121,20 @@ class SimpleMainActivity : AppCompatActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         
-        initViews()
-        initServices()
-        setupClickListeners()
-        
-        // Debug Google Identity Services configuration
-        // OAuth2DebugHelper.logConfigurationInfo(this) // Disabled for now
-        
-        updateStatus()
+        try {
+            setContentView(R.layout.activity_main)
+            
+            initViews()
+            initServices()
+            setupClickListeners()
+            
+            updateStatus()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            // Fallback en cas d'erreur
+            finish()
+        }
     }
     
     // OAuth2 callback handling removed - Google Identity Services handles this automatically
